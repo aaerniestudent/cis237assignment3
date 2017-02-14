@@ -24,6 +24,11 @@ namespace cis237assignment3
             return base.CalculateBaseCost() + numberLanguages * PRICE_PER_LANGUAGE;
         }
 
+        public override string ToString()
+        {
+            return base.ToString() + " with " + this.numberLanguages + " languages.";
+        }
+
 
     }
 }

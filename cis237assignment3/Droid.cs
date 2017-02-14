@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cis237assignment3
 {
-    abstract class Droid
+    abstract class Droid : IDroid
     {
 
         //backing fields
@@ -24,14 +24,15 @@ namespace cis237assignment3
         }
 
         //property
-        decimal TotalCost
+        public decimal TotalCost
         {
             get; //not done
+            set;
         }
         
         public override string ToString()
         {
-            return "droid model " + model + ", material " + material + ", color " + color; //anything to add
+            return "Droid model " + model + ", material " + material + ", color " + color; //anything to add
         }
 
         protected virtual decimal CalculateBaseCost()
@@ -39,7 +40,7 @@ namespace cis237assignment3
             return baseCost; //make this
         }
 
-        protected virtual decimal CalculateTotalCost()
+        public virtual decimal CalculateTotalCost()
         {
             return totalCost; //make this
         }

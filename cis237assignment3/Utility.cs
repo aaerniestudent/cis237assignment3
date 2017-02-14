@@ -23,7 +23,7 @@ namespace cis237assignment3
         public override string ToString()
         {
             string s = base.ToString() + " utility droid";
-            if (toolbox | computerConnection | arm) { s += " with utility parts:"; }
+            if (toolbox || computerConnection || arm) { s += " with utility parts:"; }
             if (toolbox) { s += " toolbox"; }
             if (computerConnection) { s += " computer connection"; }
             if (arm) { s += " arm"; }

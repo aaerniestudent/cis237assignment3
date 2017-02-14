@@ -23,12 +23,12 @@ namespace cis237assignment3
             string s = base.ToString();
             int index = base.ToString().IndexOf("U");
             s.Insert(index, "Janitor ");
-            if (!s.Contains("with:")) { s += " with utility parts:"; }
+            if (!s.Contains("with") && (trashCompactor || vacuum)) { s += " with utility parts:"; }
             if (trashCompactor) { s += " trash compactor"; }
             if (vacuum) { s += " vacuum"; }
             return s;
         }
 
-
+        
     }
 }

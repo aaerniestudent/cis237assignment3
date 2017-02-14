@@ -24,7 +24,7 @@ namespace cis237assignment3
             string s = base.ToString();
             int index = base.ToString().IndexOf("U");
             s.Insert(index, "Astromech ");
-            if (!s.Contains("with:")) { s += " with utility parts:"; }
+            if (!s.Contains("with") && fireExtunguisher) { s += " with utility parts:"; }
             if (fireExtunguisher) { s += " fire extinguisher"; }
             s += ". This works on " + numberShips + " ships.";
             return s;
