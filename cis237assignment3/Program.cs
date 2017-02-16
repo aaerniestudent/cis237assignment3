@@ -11,8 +11,26 @@ namespace cis237assignment3
         static void Main(string[] args)
         {
 
+            UserInterface UI = new UserInterface();
+            DroidCollection Droids = new DroidCollection();
 
+            UI.MainMenu();
+            int input = UI.MenuInput();
+            while (input !=3)
+            {
+                switch(input)
+                {
+                    case 1:
+                        {
+                            
+                            break;
+                        }
+                UI.MainMenu();
+                input = UI.MenuInput();
+            }
 
         }
+
+
     }
 }

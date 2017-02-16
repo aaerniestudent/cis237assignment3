@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Astromech.cs" />
     <Compile Include="Droid.cs" />
+    <Compile Include="DroidCollection.cs" />
     <Compile Include="IDroid.cs" />
     <Compile Include="Janitor.cs" />
     <Compile Include="Program.cs" />
