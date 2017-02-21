@@ -27,8 +27,6 @@ namespace cis237assignment3
             if (trashCompactor) { s += " trash compactor"; }
             if (vacuum) { s += " vacuum"; }
             return s;
-        }
-
-        
+        }        
     }
 }

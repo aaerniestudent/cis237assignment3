@@ -15,22 +15,26 @@ namespace cis237assignment3
             DroidCollection Droids = new DroidCollection();
 
             UI.MainMenu();
-            int input = UI.MenuInput();
+            int input = UI.MenuInput(3);
             while (input !=3)
             {
-                switch(input)
+                switch (input)
                 {
                     case 1:
                         {
-                            
+                            UI.NewDroid(ref Droids);
                             break;
                         }
+                    case 2:
+                        {
+                            UI.Output(Droids.GetPrintString());
+                            break;
+                        }
+                }
                 UI.MainMenu();
-                input = UI.MenuInput();
+                input = UI.MenuInput(3);
             }
 
         }
-
-
     }
 }

@@ -20,15 +20,15 @@ namespace cis237assignment3
             Console.WriteLine("*****************");
             Console.WriteLine("1. New Droid");
             Console.WriteLine("2. Print Current List");
-            Console.WriteLine("3. Exit");            
-        }   
+            Console.WriteLine("3. Exit");
+        }
 
-        //selection check for main menu
+        //selection check for menu
         public int MenuInput(int MenuType)
         {
             string input = Console.ReadLine();
             while (input != "1" && input != "2"
-                && input != "3" && (input != "4" && MenuType >= 4) 
+                && input != "3" && (input != "4" && MenuType >= 4)
                 && (input != "5" && MenuType >= 5))
 
             {
@@ -59,28 +59,28 @@ namespace cis237assignment3
 
 
         //menu headers
-        public void NewProtocolDroidMenuHeader()
+        public void NewProtocolDroidHeader()
         {
             Console.WriteLine("*****************");
             Console.WriteLine("*   PROTOCOL    *");
             Console.WriteLine("*****************");
         }
 
-        public void NewUtilityDroidMenuHeader()
+        public void NewUtilityDroidHeader()
         {
             Console.WriteLine("*****************");
             Console.WriteLine("*    UTILITY    *");
             Console.WriteLine("*****************");
         }
 
-        public void NewJanitorDroidMenuHeader()
+        public void NewJanitorDroidHeader()
         {
             Console.WriteLine("*****************");
             Console.WriteLine("*    JANITOR    *");
             Console.WriteLine("*****************");
         }
 
-        public void NewAstromechDroidMenuHeader()
+        public void NewAstromechDroidHeader()
         {
             Console.WriteLine("*****************");
             Console.WriteLine("*   ASTROMECH   *");
@@ -96,14 +96,14 @@ namespace cis237assignment3
             Console.WriteLine("1. material1");
             Console.WriteLine("2. mat2"); //remember to change these
             Console.WriteLine("3. m3");
-        } 
-        
+        }
+
         //the only choice
-        public void UtilityModelMenu()
+        public void ModelMenu()
         {
             Console.WriteLine("1. Gonk"); //the only choice
         }
-        
+
         //Color Menu
         public void ColorMenu()
         {
@@ -129,9 +129,10 @@ namespace cis237assignment3
 
         //tool addon menu for utility, janitor, astromech droids
         public void ToolAddOnMenu(String tool)
-        {          
+        {
             Console.WriteLine("Does this droid have the " + tool + " addition?");
-            Console.Write("Y/N?   ");
+            Console.Write("1. Yes");
+            Console.Write("2. No");
         }
 
         //ship menu for astromech droids
@@ -143,20 +144,63 @@ namespace cis237assignment3
         public int InputInteger()
         {
             string s = Console.ReadLine();
-            int input = -1;          
+            int input = -1;
             while (input < 0)
-            {                
+            {
                 try
                 {
                     input = int.Parse(s);
-                }catch
-                {                                  
-                    s = Console.ReadLine();
+                } catch
+                {
+                    InputError(s + " not a positive whole number");                   
                     input = -1;
+                    s = Console.ReadLine();
                 }
-            }                           
+                
+            }
             Clear();
             return input;
+        }
+
+        //*****************
+        //*   NEW DROID   *
+        //*****************
+
+        public void NewDroid(ref DroidCollection droids)
+        {
+            NewDroidMenu();
+            int type = MenuInput(5);
+            switch (type)
+            {
+                case 1: // protocol
+                    {
+                        NewProtocolDroidHeader();
+                        MaterialMenu();
+                        int material = MenuInput(3);
+                        NewProtocolDroidHeader();
+                        ModelMenu();
+                        int Model = MenuInput(3);
+                        NewProtocolDroidHeader();
+                        ColorMenu();
+                        int Color = MenuInput(3);
+                        NewProtocolDroidHeader();
+                        ProtocolLanguagesMenu();
+                        int Languages = InputInteger();
+                        break;
+                    }
+                case 2: // utility
+                    {
+                        break;
+                    }
+                case 3: // janitor
+                    {
+                        break;
+                    }
+                case 4: // astromech
+                    {
+                        break;
+                    }
+            }
         }
 
         //*****************
@@ -171,6 +215,11 @@ namespace cis237assignment3
         public void Clear()
         {
             Console.Clear();
+        }
+
+        public void Pause()
+        {
+            Console.Read();
         }
 
         private void InputError()
