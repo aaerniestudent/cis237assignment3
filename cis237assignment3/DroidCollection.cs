@@ -35,21 +35,21 @@ namespace cis237assignment3
         }
 
         //add droid, pretty much the same from assignment 1
-        public void Add(Droid addedItem, int index)
+        public void Add(Droid addedItem)
         {
-            if (droids[index] == null)
+            if (droids[length] == null)
             {
-                droids[index] = addedItem;
+                droids[length] = addedItem;
                 length++;
             }
             else
             {
-                droids[index] = addedItem;
+                droids[length] = addedItem;
             }
         }
 
         //returns huge string with all droids, pretty much the same from assignment 1
-        public String GetPrintString()
+        public override String ToString()
         {
             string printString = "";
             for (int i = 0; i < length; i++)

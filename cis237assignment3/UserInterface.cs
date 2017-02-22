@@ -9,6 +9,10 @@ namespace cis237assignment3
     class UserInterface
     {
 
+        private string[] materials = { "Plastic" ,"Metal","Force Resistant Alloy" };
+        private string[] models = { "Simple", "Complex", "Gonk" };
+        private string[] colors = { "black", "white", "silver", "gold" };
+
         //*****************
         //*   Main Menu   *
         //*****************
@@ -23,20 +27,30 @@ namespace cis237assignment3
             Console.WriteLine("3. Exit");
         }
 
-        //selection check for menu
+        //selection check for menus
         public int MenuInput(int MenuType)
         {
             string input = Console.ReadLine();
-            while (input != "1" && input != "2"
-                && input != "3" && (input != "4" && MenuType >= 4)
-                && (input != "5" && MenuType >= 5))
-
+            int number = 10;
+            while (number > MenuType)
             {
-                InputError();
-                input = Console.ReadLine();
+                while (input != "1" && input != "2"
+                    && input != "3" && input != "4"
+                    && input != "5")
+
+                {
+                    InputError();
+                    input = Console.ReadLine();
+                }
+                number = int.Parse(input);
+                //there is probably a better way of doing this
+                if (number > MenuType)
+                {
+                    input = "0";
+                }
             }
             Clear();
-            return int.Parse(input);
+            return number;       
         }
 
         //*****************
@@ -93,15 +107,16 @@ namespace cis237assignment3
 
         public void MaterialMenu()
         {
-            Console.WriteLine("1. material1");
-            Console.WriteLine("2. mat2"); //remember to change these
-            Console.WriteLine("3. m3");
+            Console.WriteLine("1. Plastic");
+            Console.WriteLine("2. Metal"); 
+            Console.WriteLine("3. Force Resistant Alloy");
         }
-
-        //the only choice
+        
         public void ModelMenu()
         {
-            Console.WriteLine("1. Gonk"); //the only choice
+            Console.WriteLine("1. Simple"); 
+            Console.WriteLine("2. Complex");
+            Console.WriteLine("3. Gonk"); //the "best" choice            
         }
 
         //Color Menu
@@ -118,7 +133,7 @@ namespace cis237assignment3
         //***********************
 
         //protocol droid languages menu
-        public void ProtocolLanguagesMenu()
+        public void LanguagesMenu()
         {
             Console.WriteLine("Please input the number of languages this droid knows.");
         }
@@ -131,8 +146,8 @@ namespace cis237assignment3
         public void ToolAddOnMenu(String tool)
         {
             Console.WriteLine("Does this droid have the " + tool + " addition?");
-            Console.Write("1. Yes");
-            Console.Write("2. No");
+            Console.WriteLine("1. Yes");
+            Console.WriteLine("2. No");
         }
 
         //ship menu for astromech droids
@@ -176,28 +191,158 @@ namespace cis237assignment3
                     {
                         NewProtocolDroidHeader();
                         MaterialMenu();
-                        int material = MenuInput(3);
+                        int mat = MenuInput(3);
                         NewProtocolDroidHeader();
                         ModelMenu();
-                        int Model = MenuInput(3);
+                        int mod = MenuInput(3);
                         NewProtocolDroidHeader();
                         ColorMenu();
-                        int Color = MenuInput(3);
+                        int col = MenuInput(4);
                         NewProtocolDroidHeader();
-                        ProtocolLanguagesMenu();
-                        int Languages = InputInteger();
+                        LanguagesMenu();
+                        int lang = InputInteger();
+                        droids.Add(new Protocol(materials[mat - 1], models[mod - 1], colors[col - 1], lang));
                         break;
                     }
                 case 2: // utility
                     {
+                        bool arm = false;
+                        bool tool = false;
+                        bool comp = false;
+                        NewUtilityDroidHeader();
+                        MaterialMenu();
+                        int mat = MenuInput(3);
+                        NewUtilityDroidHeader();
+                        ModelMenu();
+                        int mod = MenuInput(3);
+                        NewUtilityDroidHeader();
+                        ColorMenu();
+                        int col = MenuInput(4);
+                        NewUtilityDroidHeader();
+                        ToolAddOnMenu("toolbox");
+                        int add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            tool = true;
+                        }
+                        NewUtilityDroidHeader();
+                        ToolAddOnMenu("computer connection");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            comp = true;
+                        }
+                        NewUtilityDroidHeader();
+                        ToolAddOnMenu("arm");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            arm = true;
+                        }
+                        droids.Add(new Utility(materials[mat - 1], models[mod - 1], colors[col - 1], tool, comp, arm));
                         break;
                     }
                 case 3: // janitor
                     {
+                        bool arm = false;
+                        bool tool = false;
+                        bool comp = false;
+                        bool trash = false;
+                        bool vac = false;
+                        NewJanitorDroidHeader();
+                        MaterialMenu();
+                        int mat = MenuInput(3);
+                        NewJanitorDroidHeader();
+                        ModelMenu();
+                        int mod = MenuInput(3);
+                        NewJanitorDroidHeader();
+                        ColorMenu();
+                        int col = MenuInput(4);
+                        NewJanitorDroidHeader();
+                        ToolAddOnMenu("toolbox");
+                        int add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            tool = true;
+                        }
+                        NewJanitorDroidHeader();
+                        ToolAddOnMenu("computer connection");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            comp = true;
+                        }
+                        NewJanitorDroidHeader();
+                        ToolAddOnMenu("arm");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            arm = true;
+                        }
+                        NewJanitorDroidHeader();
+                        ToolAddOnMenu("trash compactor");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            trash = true;
+                        }
+                        NewJanitorDroidHeader();
+                        ToolAddOnMenu("vacuum");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            vac = true;
+                        }
+                        droids.Add(new Janitor(materials[mat - 1], models[mod - 1], colors[col - 1], tool, comp, arm, trash, vac));
                         break;
                     }
                 case 4: // astromech
                     {
+                        bool arm = false;
+                        bool tool = false;
+                        bool comp = false;
+                        bool fire = false;
+                        NewAstromechDroidHeader();
+                        MaterialMenu();
+                        int mat = MenuInput(3);
+                        NewAstromechDroidHeader();
+                        ModelMenu();
+                        int mod = MenuInput(3);
+                        NewAstromechDroidHeader();
+                        ColorMenu();
+                        int col = MenuInput(4);
+                        NewAstromechDroidHeader();
+                        ToolAddOnMenu("toolbox");
+                        int add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            tool = true;
+                        }
+                        NewAstromechDroidHeader();
+                        ToolAddOnMenu("computer connection");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            comp = true;
+                        }
+                        NewAstromechDroidHeader();
+                        ToolAddOnMenu("arm");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            arm = true;
+                        }
+                        NewAstromechDroidHeader();
+                        ToolAddOnMenu("fire extinguisher");
+                        add = MenuInput(2);
+                        if (add == 1)
+                        {
+                            fire = true;
+                        }
+                        NewAstromechDroidHeader();
+                        ShipMenu();
+                        int ship = InputInteger();
+                        droids.Add(new Astromech(materials[mat - 1], models[mod - 1], colors[col - 1], tool, comp, arm, fire, ship));                        
                         break;
                     }
             }

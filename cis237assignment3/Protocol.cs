@@ -9,24 +9,27 @@ namespace cis237assignment3
     class Protocol : Droid
     {
 
-        private const decimal PRICE_PER_LANGUAGE = 5;
+        private const decimal PRICE_PER_LANGUAGE = 1.5m;
 
         private int numberLanguages;
 
-        public Protocol(string Material, string Model, string Color, decimal baseCost) : base(Material, Model, Color)
+        public Protocol(string Material, string Model, string Color, int NumberLanguages) : base(Material, Model, Color)
         {
-            //whatever this is
+            this.numberLanguages = NumberLanguages;
+            CalculateTotalCost();
         }
 
         //fix this
         public override decimal CalculateTotalCost()
         {
-            return base.CalculateBaseCost() + numberLanguages * PRICE_PER_LANGUAGE;
+            decimal total = baseCost + numberLanguages * PRICE_PER_LANGUAGE;
+            totalCost = total;
+            return total;
         }
 
         public override string ToString()
         {
-            return base.ToString() + " with " + this.numberLanguages + " languages.";
+            return base.ToString() + Environment.NewLine + " Protocol Droid with " + this.numberLanguages + " languages." + Environment.NewLine + " Total Cost: " + totalCost.ToString("C");
         }
 
 

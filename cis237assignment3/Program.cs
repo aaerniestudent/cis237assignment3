@@ -21,13 +21,13 @@ namespace cis237assignment3
                 switch (input)
                 {
                     case 1:
-                        {
+                        {   //new droid
                             UI.NewDroid(ref Droids);
                             break;
                         }
                     case 2:
-                        {
-                            UI.Output(Droids.GetPrintString());
+                        {   //print droid list
+                            UI.Output(Droids.ToString());
                             break;
                         }
                 }

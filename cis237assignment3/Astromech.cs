@@ -9,7 +9,7 @@ namespace cis237assignment3
     class Astromech : Utility
     {
 
-        private const decimal COST_PER_SHIP = 1.2m;
+        private const decimal COST_PER_SHIP = 1.25m;
 
         private bool fireExtunguisher;
         private int numberShips;
@@ -18,17 +18,28 @@ namespace cis237assignment3
         {
             this.fireExtunguisher = FireExtinguisher;
             this.numberShips = NumberShips;
+            CalculateTotalCost();
         }
         public override string ToString()
         {
             string s = base.ToString();
-            int index = base.ToString().IndexOf("U");
-            s.Insert(index, "Astromech ");
-            if (!s.Contains("with") && fireExtunguisher) { s += " with utility parts:"; }
+            int index = s.IndexOf('U');            
+            s = s.Insert(index, "Astromech ");
+            index = s.IndexOf("Total");
+            s = s.Remove(index - 3);
+            if (!s.Contains("with") && fireExtunguisher) { s += " with utility parts:" + Environment.NewLine; }
             if (fireExtunguisher) { s += " fire extinguisher"; }
             s += ". This works on " + numberShips + " ships.";
+            s += Environment.NewLine + " Total Cost: " + totalCost.ToString("C");
             return s;
         }
-
+        public override decimal CalculateTotalCost()
+        {
+            decimal total = base.CalculateTotalCost();
+            if (fireExtunguisher) { total += PART_COST; }
+            total += numberShips * COST_PER_SHIP;
+            totalCost = total;
+            return total;
+        }
     }
 }
