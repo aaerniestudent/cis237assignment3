@@ -9,7 +9,7 @@ namespace cis237assignment3
     class Astromech : Utility
     {
 
-        private const decimal COST_PER_SHIP = 1.25m;
+        private const decimal COST_PER_SHIP = 5.25m;
 
         private bool fireExtunguisher;
         private int numberShips;
@@ -33,13 +33,13 @@ namespace cis237assignment3
             s += Environment.NewLine + " Total Cost: " + totalCost.ToString("C");
             return s;
         }
-        public override decimal CalculateTotalCost()
+        public override void CalculateTotalCost()
         {
-            decimal total = base.CalculateTotalCost();
+            base.CalculateTotalCost();
+            decimal total = totalCost;
             if (fireExtunguisher) { total += PART_COST; }
             total += numberShips * COST_PER_SHIP;
             totalCost = total;
-            return total;
         }
     }
 }

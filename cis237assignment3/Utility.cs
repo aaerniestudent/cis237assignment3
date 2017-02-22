@@ -9,7 +9,7 @@ namespace cis237assignment3
     class Utility : Droid
     {
 
-        protected const decimal PART_COST = .41m;
+        protected const decimal PART_COST = 2.41m;
 
         private bool toolbox;
         private bool computerConnection;
@@ -25,23 +25,28 @@ namespace cis237assignment3
 
         public override string ToString()
         {
+            //formatted ToString for utility droids looks like this:
+            //Droid model: (model), material: (material), color: (color) 
+            // (type) Utility droid with utility parts:
+            // [toolbox] [computer connection] [arm]. (This works on X ships.)
+            // Total Cost: $24.15
             string s = base.ToString() + Environment.NewLine + " Utility droid";
             if (toolbox || computerConnection || arm) { s += " with utility parts:" + Environment.NewLine; }
-            if (toolbox) { s += " toolbox"; }
-            if (computerConnection) { s += " computer connection"; }
-            if (arm) { s += " arm"; }
+            if (toolbox) { s += " [toolbox]"; }
+            if (computerConnection) { s += " [computer connection]"; }
+            if (arm) { s += " [arm]"; }
             s += Environment.NewLine + " Total Cost: " + totalCost.ToString("C");
             return s;
         }
 
-        public override decimal CalculateTotalCost()
+        public override void CalculateTotalCost()
         {
-            decimal total = baseCost;
+            base.CalculateTotalCost();
+            decimal total = totalCost;
             if (toolbox) { total += PART_COST; }
             if (computerConnection) { total += PART_COST; }
             if (arm) { total += PART_COST; }
             totalCost = total;
-            return total;
         }
     }
 }

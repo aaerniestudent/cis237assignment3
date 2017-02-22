@@ -9,8 +9,7 @@ namespace cis237assignment3
     class Program
     {
         static void Main(string[] args)
-        {
-
+        {            
             UserInterface UI = new UserInterface();
             DroidCollection Droids = new DroidCollection();
 

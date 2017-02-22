@@ -18,17 +18,22 @@ namespace cis237assignment3
             this.numberLanguages = NumberLanguages;
             CalculateTotalCost();
         }
-
-        //fix this
-        public override decimal CalculateTotalCost()
+       
+        public override void CalculateTotalCost()
         {
-            decimal total = baseCost + numberLanguages * PRICE_PER_LANGUAGE;
+            //have the total cost match the base cost
+            base.CalculateTotalCost();
+            //add language value
+            decimal total = totalCost + numberLanguages * PRICE_PER_LANGUAGE;
             totalCost = total;
-            return total;
         }
 
         public override string ToString()
         {
+            //format looks like this
+            //Droid model: (model), material: (material), color: (color) 
+            // Protocol Droid with X languages.
+            // Total Cost: $23.00;
             return base.ToString() + Environment.NewLine + " Protocol Droid with " + this.numberLanguages + " languages." + Environment.NewLine + " Total Cost: " + totalCost.ToString("C");
         }
 

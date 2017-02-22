@@ -21,8 +21,11 @@ namespace cis237assignment3
 
         public override string ToString()
         {
+            //has some formatting stuff including adding Janitor before Utility and removing total
+            //so stuff can be added in the middle before re-adding total
+            //astromech also has this      
             string s = base.ToString();
-            int index = s.IndexOf('U');
+            int index = s.IndexOf("Utility");
             s = s.Insert(index, "Janitor ");
             index = s.IndexOf("Total");
             s = s.Remove(index-3);
@@ -33,13 +36,13 @@ namespace cis237assignment3
             return s;
         }
 
-        public override decimal CalculateTotalCost()
+        public override void CalculateTotalCost()
         {
-            decimal total = base.CalculateTotalCost();
+            base.CalculateTotalCost();
+            decimal total = totalCost;
             if (trashCompactor) { total += PART_COST; }
             if (vacuum) { total += PART_COST; }
             totalCost = total;
-            return total;
         }
     }
 }

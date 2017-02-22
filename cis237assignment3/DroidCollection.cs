@@ -22,19 +22,19 @@ namespace cis237assignment3
             set { length = value; }
         }
 
-        //not really necessary or used for the assignment, but could be useful(not used)
+        //not really necessary or used for the assignment, but could be useful(not used) [copied from assignment 1]
         public Droid getDroid(int index)
         {
             return droids[index];
         }
 
-        //not really necessary or used for the assignment, but could be useful (not used)
+        //not really necessary or used for the assignment, but could be useful(not used) [copied from assignment 1]
         public Droid getLastDroid()
         {
             return droids[length - 1];
         }
 
-        //add droid, pretty much the same from assignment 1
+        //add droid, pretty similar to assignment 1
         public void Add(Droid addedItem)
         {
             if (droids[length] == null)
@@ -48,7 +48,7 @@ namespace cis237assignment3
             }
         }
 
-        //returns huge string with all droids, pretty much the same from assignment 1
+        //returns huge string with all droids, pretty similar to assignment 1
         public override String ToString()
         {
             string printString = "";

@@ -9,7 +9,8 @@ namespace cis237assignment3
     class UserInterface
     {
 
-        private string[] materials = { "Plastic" ,"Metal","Force Resistant Alloy" };
+        //string arrays used to create the droid object in "new droid"
+        private string[] materials = { "Plastic", "Metal", "Force Resistant Alloy" };
         private string[] models = { "Simple", "Complex", "Gonk" };
         private string[] colors = { "black", "white", "silver", "gold" };
 
@@ -43,7 +44,7 @@ namespace cis237assignment3
                     input = Console.ReadLine();
                 }
                 number = int.Parse(input);
-                //there is probably a better way of doing this
+                //there is probably a better way of doing this, checks if it is valid to the menu input
                 if (number > MenuType)
                 {
                     input = "0";
@@ -156,6 +157,7 @@ namespace cis237assignment3
             Console.WriteLine("Please input the number of types of ships this droid can work on.");
         }
 
+        //gets an integer
         public int InputInteger()
         {
             string s = Console.ReadLine();
@@ -181,6 +183,7 @@ namespace cis237assignment3
         //*   NEW DROID   *
         //*****************
 
+        //all the input/output to make a new droid, adds it to the droid collection
         public void NewDroid(ref DroidCollection droids)
         {
             NewDroidMenu();
@@ -367,6 +370,7 @@ namespace cis237assignment3
             Console.Read();
         }
 
+        //error messages
         private void InputError()
         {
             Output("Error: invalid input; please input the number associated with the menu choice you want.");
